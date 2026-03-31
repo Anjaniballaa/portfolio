@@ -486,13 +486,16 @@ nav.scrolled {
   background:linear-gradient(135deg,rgba(212,168,83,0.05),rgba(107,92,246,0.04));
   pointer-events:none;
 }
+@keyframes auraPulse {
+  0%,100% { transform:scale(1); opacity:0.6; }
+  50%      { transform:scale(1.07); opacity:1; }
+}
 .avatar {
-  width:88px; height:88px; border-radius:50%;
-  background:linear-gradient(135deg,var(--gold),var(--indigo),var(--rose));
+  width:120px; height:120px; border-radius:50%;
+  background:none;
   display:flex; align-items:center; justify-content:center;
-  font-family:'Playfair Display',serif; font-size:38px; font-weight:900;
-  color:#fff; margin:0 auto 16px;
-  box-shadow:0 0 32px rgba(212,168,83,0.2);
+  margin:0 auto 16px;
+  position:relative; overflow:visible;
 }
 .profile-nm { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; margin-bottom:3px; }
 .profile-loc { font-size:12px; color:var(--text3); }
@@ -899,6 +902,92 @@ nav.scrolled {
 .contact-label-val { font-size:12px; color:var(--text); font-weight:500; }
 
 /* ══════════════════════════════════════════════════
+   CONTACT FORM
+══════════════════════════════════════════════════ */
+.contact-form-wrap {
+  margin-top: 48px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 32px;
+  text-align: left;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contact-form-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.contact-form-sub {
+  font-size: 12px; color: var(--text3);
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+}
+.cf-row { display: flex; gap: 14px; }
+.cf-group {
+  display: flex; flex-direction: column;
+  gap: 7px; margin-bottom: 16px; flex: 1;
+}
+.cf-group label {
+  font-size: 11px; color: var(--text3);
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.cf-group input,
+.cf-group textarea {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: none;
+  width: 100%;
+}
+.cf-group input:focus,
+.cf-group textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212,168,83,0.08);
+}
+.cf-group input::placeholder,
+.cf-group textarea::placeholder { color: var(--text3); }
+.cf-submit {
+  width: 100%; padding: 14px;
+  background: linear-gradient(135deg, var(--gold), #b8882a);
+  color: #06060f; font-weight: 700;
+  font-size: 13px; letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none; border-radius: 10px;
+  cursor: pointer; font-family: 'Outfit', sans-serif;
+  transition: all 0.25s; margin-top: 6px;
+}
+.cf-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,168,83,0.3); }
+.cf-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.cf-status {
+  margin-top: 14px; padding: 12px 16px;
+  border-radius: 10px; font-size: 13px;
+  text-align: center; display: none;
+}
+.cf-status.success {
+  background: rgba(45,212,191,0.1);
+  border: 1px solid rgba(45,212,191,0.25);
+  color: var(--teal); display: block;
+}
+.cf-status.error {
+  background: rgba(232,92,138,0.1);
+  border: 1px solid rgba(232,92,138,0.25);
+  color: var(--rose); display: block;
+}
+@media(max-width:560px) { .cf-row { flex-direction: column; gap: 0; } }
+
+/* ══════════════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════════════ */
 footer {
@@ -1046,7 +1135,16 @@ footer span { color:var(--gold); }
     </div>
     <div class="about-sidebar">
       <div class="profile-card">
-        <div class="avatar">A</div>
+        <div class="avatar" style="padding:0;overflow:visible;background:none;width:120px;height:120px;position:relative;display:flex;align-items:center;justify-content:center;box-shadow:none;">
+  <!-- Aura rings -->
+  <div style="position:absolute;width:120px;height:120px;border-radius:50%;border:2px solid rgba(107,92,246,0.85);animation:auraPulse 1.5s ease-in-out infinite;"></div>
+  <div style="position:absolute;width:136px;height:136px;border-radius:50%;border:2px solid rgba(107,92,246,0.45);animation:auraPulse 1.5s ease-in-out 0.3s infinite;"></div>
+  <div style="position:absolute;width:152px;height:152px;border-radius:50%;border:2px solid rgba(107,92,246,0.18);animation:auraPulse 1.5s ease-in-out 0.6s infinite;"></div>
+  <!-- Photo -->
+  <img src="https://i.ibb.co/Q7HgfGx8/Anjani-portfolio-photo.jpg"
+    alt="Anjani Balla"
+    style="width:112px;height:112px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid rgba(107,92,246,0.6);position:relative;z-index:2;" />
+</div>
         <div class="profile-nm">Anjani Balla</div>
         <div class="profile-loc">Hyderabad, India 🇮🇳</div>
       </div>
@@ -1346,8 +1444,37 @@ footer span { color:var(--gold); }
       </a>
 
     </div>
+    <div class="contact-form-wrap">
+        <div class="contact-form-title">Send me a message ✉️</div>
+        <div class="contact-form-sub">I'll reply within 24 hours · directly to your email</div>
+        <form id="contact-form" action="https://formspree.io/f/xpqorpkn" method="POST">
+          <div class="cf-row">
+            <div class="cf-group">
+              <label for="cf-name">Your Name</label>
+              <input id="cf-name" type="text" name="name" placeholder="Priya Sharma" required />
+            </div>
+            <div class="cf-group">
+              <label for="cf-email">Your Email</label>
+              <input id="cf-email" type="email" name="email" placeholder="priya@email.com" required />
+            </div>
+          </div>
+          <div class="cf-group">
+            <label for="cf-subject">Subject</label>
+            <input id="cf-subject" type="text" name="subject" placeholder="Collaboration / Opportunity / Just saying hi!" />
+          </div>
+          <div class="cf-group">
+            <label for="cf-msg">Message</label>
+            <textarea id="cf-msg" name="message" rows="5"
+              placeholder="Hi Anjani, I came across your portfolio and..." required></textarea>
+          </div>
+          <button type="submit" class="cf-submit" id="cf-btn">Send Message →</button>
+          <div class="cf-status" id="cf-status"></div>
+        </form>
+      </div>
   </div>
 </div>
+
+
 
 </div><!-- end page-wrapper -->
 
@@ -1691,6 +1818,39 @@ function animCanvas() {
 animCanvas();
 
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+/* ═══ CONTACT FORM — Formspree ═══ */
+(function() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('cf-btn');
+    const status = document.getElementById('cf-status');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    status.className = 'cf-status';
+    status.style.display = 'none';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        status.textContent = '✅ Message sent! I\'ll get back to you soon.';
+        status.className = 'cf-status success';
+        form.reset();
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      status.textContent = '❌ Oops! Something went wrong. Try emailing me directly.';
+      status.className = 'cf-status error';
+    }
+    btn.disabled = false;
+    btn.textContent = 'Send Message →';
+  });
+})();
 </script>
 </body>
 </html>
